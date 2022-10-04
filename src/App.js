@@ -6,61 +6,42 @@ import Tutors from './Tutors/Tutors'
 import TutorDetail from './Tutors/TutorDetail/TutorDetail'
 
 class App extends Component {
-  render() {
+  state = {
+    isLoggedId: false
+  }
 
+  render() {
     return (
       <div>
         <nav className='nav'>
           <ul>
             <li>
-              <NavLink
-                to={{
-                  pathname: '/',
-                }}
-                exact
-                activeClassName='wfm-active'
-              >Home</NavLink>
+              <NavLink to={{ pathname: '/' }} exact activeClassName='wfm-active'>Home</NavLink>
             </li>
             <li>
-              <NavLink
-                to='/about'
-                activeStyle={{
-                  color: 'blue'
-                }}
-              >About</NavLink>
+              <NavLink to='/about' activeStyle={{ color: 'blue' }}>About</NavLink>
             </li>
             <li>
-              <NavLink
-                to='/tutors'
-              >Tutors</NavLink>
+              <NavLink to='/tutors'>Tutors</NavLink>
             </li>
           </ul>
         </nav>
 
         <hr />
-
+        <div style={{ textAlign: 'center' }}>
+          <h3>Is logged in {this.state.isLoggedId.toString()}</h3>
+          <button onClick={() => this.setState({ isLoggedId: true })}>Login</button>
+        </div>
+        <hr />
         <Switch>
-          <Route
-            path='/'
-            exact
-            render={() => <h1 style={{ textAlign: 'center' }}>Home Page</h1>}
-          />
-          <Route
-            path='/about'
-            component={About}
-          />
-          <Route
-            path='/tutors/:id'
-            component={TutorDetail}
-          />
-          <Route
-            path='/tutors'
-            component={Tutors}
-          />
+          <Route path='/' exactrender={() => <h1 style={{ textAlign: 'center' }}>Home Page</h1>} />
+          {this.state.isLoggedId ?
+            <React.Fragment>
+              <Route path='/about' component={About} />
+              <Route path='/tutors/:id' component={TutorDetail} />
+              <Route path='/tutors' component={Tutors} />
+            </React.Fragment> : null}
           <Redirect to={'/'} />
-          {/* <Route
-            render={() => <h1 style={{ textAlign: 'center', color: 'red' }}>404</h1>}
-          /> */}
         </Switch>
       </div>
     );

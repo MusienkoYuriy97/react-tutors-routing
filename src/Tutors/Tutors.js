@@ -10,7 +10,6 @@ export default class Tutors extends Component {
     ]
   }
 
-
   handleGoHomeButton = () => {
     this.props.history.push({
       pathname: '/'

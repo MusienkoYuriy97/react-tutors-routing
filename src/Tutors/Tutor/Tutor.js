@@ -9,8 +9,7 @@ const Tutor = props => {
       className={'Tutor'}
       onClick={() => {
         props.history.push({
-          pathname: '/tutors/tutor',
-          search: '?id=' + props.id
+          pathname: '/tutors/' + props.id,
         }
         )
       }}

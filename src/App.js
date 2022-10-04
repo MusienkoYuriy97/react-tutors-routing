@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './App.scss'
-import { Route, NavLink } from 'react-router-dom'
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom'
 import About from './About/About'
 import Tutors from './Tutors/Tutors'
+import TutorDetail from './Tutors/TutorDetail/TutorDetail'
 
 class App extends Component {
   render() {
@@ -15,8 +16,6 @@ class App extends Component {
               <NavLink
                 to={{
                   pathname: '/',
-                  search: '?a=1&b=2',
-                  hash: 'www'
                 }}
                 exact
                 activeClassName='wfm-active'
@@ -40,19 +39,29 @@ class App extends Component {
 
         <hr />
 
-        <Route
-          path='/'
-          exact
-          render={() => <h1 style={{ textAlign: 'center' }}>Home Page</h1>}
-        />
-        <Route
-          path='/about'
-          component={About}
-        />
-        <Route
-          path='/tutors'
-          component={Tutors}
-        />
+        <Switch>
+          <Route
+            path='/'
+            exact
+            render={() => <h1 style={{ textAlign: 'center' }}>Home Page</h1>}
+          />
+          <Route
+            path='/about'
+            component={About}
+          />
+          <Route
+            path='/tutors/:id'
+            component={TutorDetail}
+          />
+          <Route
+            path='/tutors'
+            component={Tutors}
+          />
+          <Redirect to={'/'} />
+          {/* <Route
+            render={() => <h1 style={{ textAlign: 'center', color: 'red' }}>404</h1>}
+          /> */}
+        </Switch>
       </div>
     );
   }

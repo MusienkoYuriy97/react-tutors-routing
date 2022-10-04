@@ -1,14 +1,24 @@
 import React from 'react'
 import './Tutor.scss'
+import { withRouter } from 'react-router-dom'
 
 
 const Tutor = props => {
   return (
-    <div className={'Tutor'}>
+    <div
+      className={'Tutor'}
+      onClick={() => {
+        props.history.push({
+          pathname: '/tutors/tutor',
+          search: '?id=' + props.id
+        }
+        )
+      }}
+    >
       <h3>{props.name}</h3>
       <p>{props.subject}</p>
-    </div>
+    </div >
   )
 }
 
-export default Tutor
+export default withRouter(Tutor)

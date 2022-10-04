@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './App.scss'
-import {Route} from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
 import About from './About/About'
 import Tutors from './Tutors/Tutors'
 
@@ -9,25 +9,50 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="nav">
+        <nav className='nav'>
           <ul>
             <li>
-              <a href="/">Home</a>
+              <NavLink
+                to={{
+                  pathname: '/',
+                  search: '?a=1&b=2',
+                  hash: 'www'
+                }}
+                exact
+                activeClassName='wfm-active'
+              >Home</NavLink>
             </li>
             <li>
-              <a href="/about">About</a>
+              <NavLink
+                to='/about'
+                activeStyle={{
+                  color: 'blue'
+                }}
+              >About</NavLink>
             </li>
             <li>
-              <a href="/tutors">Tutors</a>
+              <NavLink
+                to='/tutors'
+              >Tutors</NavLink>
             </li>
           </ul>
         </nav>
 
-        <hr/>
+        <hr />
 
-        <Route path="/" exact render={() => <h1 style={{ textAlign: 'center'}}>Home Page</h1>} />
-        <Route path="/about" exact component={About} />
-        <Route path="/tutors" exact component={Tutors} />
+        <Route
+          path='/'
+          exact
+          render={() => <h1 style={{ textAlign: 'center' }}>Home Page</h1>}
+        />
+        <Route
+          path='/about'
+          component={About}
+        />
+        <Route
+          path='/tutors'
+          component={Tutors}
+        />
       </div>
     );
   }

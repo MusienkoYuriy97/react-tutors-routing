@@ -25,6 +25,10 @@
 
     li {
       margin-right: 15px;
+      a.active, a.wfm-active {
+        color: red;
+        font-weight: bold;
+      }
     }
   }
 }
